@@ -7,8 +7,8 @@
 <h3>プロジェクト目標 : Project Goal</h3>
 <p>レコメンデーションシステムの勉強、チャットボットを元にしてQ/A開発を実施できるように頑張る。
 メンバーも実際のプロジェクトを実施ながら新しい経験を貰い、６ヶ月でデモ成果物（AiriBot）とそれに対して記事作成できるまで頑張る。</p>
-Create Q/A development system which based on recommendation systems and chatbots.
-All members will also get new experiences while carrying out the actual project and will do their best until they can create a demo product (AiriBot) and an article for it in 6 months.
+<p>Create Q/A development system which based on recommendation systems and chatbots.
+All members will also get new experiences while carrying out the actual project and will do their best until they can create a demo product (AiriBot) and an article for it in 6 months.</p>
 
 <h3>成果物 : Process</h3>
 <ul>
