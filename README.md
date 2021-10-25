@@ -1,5 +1,7 @@
 <h1>AIRIBOT</h1>
-
+<p align="center">
+  <img src="images/company_logo.png" width="350" title="Airitech">
+</p>
 <h3>Executive Summary:</h3>
 <p>チャットボットに聞いた質問からテキストを分析し、それに関する商品やサービスをおすすめする。自然言語処理を使用してテキストの類似性、感情分析で商品検索し、レコメンデーションシステムを構築する。</p>
 <p>When ask the chatbot, analyze the text from the questions from end-users and recommend products and services related to it from Airitech. Use natural language processing and sentiment analysis to search for products by text similarity, build a recommendation system.</p>
@@ -32,49 +34,15 @@ All members will also get new experiences while carrying out the actual project 
 <ul>
     <li>参加者メンバーの開発時間が取れない、開発できない可能もあり <br>
         Participant members may not have time to develop or may not be able to develop</li>
-    <li>開発で時間がかかる場合プロジェクト締め切りに間に合わない可能もあり</li>
-    <li>環境構築準備に時間がかかる場合もあり</li>
-</ul>
-<h2>メリット、コスト、予算</h2>
-<h4>メリット:</h4>
-<ul>
-    <li>Airitech で社内でもチャットボット研究開発ができるメンバーもいるので、新プロジェクトなどで提案やすくなる。</li>
-    <li>社内メンバーたちも良い経験が貰い、プロジェクト成功の場合レコメンデーションシステムもできるメンバーが増えるくる。</li>
-    <li>記事も準備する予定なので、参加者メンバーで記事が書いていないメンバーがある際に開発経験も記事書くのも勉強になる。</li>
-    <li>Airitechに興味がある方、Airitechの製品やサービスに対して【Q/A】したい方を簡単に答えできるようにするのはチャットボット（AiriBot）の一つの目的でした。</li>
-</ul>
-<h4>コスト:</h4>
-<ul>
-    <li>参加者の時間、プロジェクト管理者の実施時間</li>
-    <li>メンバーの開発トレーニング時間</li>
-    <li>GPU利用する場合AWS経由なら手数料</li>
-</ul>
-<h4>予算:</h4>
-<ul>
-    <li>社内勉強用AWSを使用する予定</li>
-</ul>
-<h2>学習範囲と学習外</h2>
-<h4>In-Scope:</h4>
-<ul>
-    <li>Note記事を書く。</li>
-    <li>recommendation system algorithm に勉強を優先する。</li>
-    <li>英語でテスト分析するようにする。（アップグレード際に出来れば日本語も追加）</li>
-</ul>
-<h4>Out-of-Scope:</h4>
-<ul>
-    <li>アプリケーションまではしません</li>
-    <li>検索システムはしません</li>
+    <li>開発で時間がかかる場合プロジェクト締め切りに間に合わない可能もあり<br>
+        If development takes time or getting some problems, it may not be possible to finish in project deadline</li>
+    <li>環境構築準備に時間がかかる場合もあり <br>
+        It may take time to prepare for development environment preparation.</li>
 </ul>
 <h3>プロジェクトチーム</h3>
 <ul>
-    <li>Project Sponsor: Airitech</li>
-    <li>Project Lead: ニャンリンさん、タンダーさん</li>
-    <li>Project Team: タンルインウーさん、ネイトゥッさん</li>
-    <li>Additional Stakeholders:　落合さん、カイザーさん</li>
-</ul>
-<h3>成功の測定</h3>
-<ul>
-    <li>１ヶ月でチャットボット環境構築と準備する。</li>
-    <li>２ヶ月～４ヶ月でQ/A研究のためKnowledge Base 構築、勉強と、データ準備</li>
-    <li>４ヶ月～６ヶ月で検討したQ/A研究とチャットボットをおわせて開発をすすむ、検討した内容をまとめ発表するため準備とNote 記事を書く</li>
+  <li>Project Sponsor: Airitech</li>
+    <li>Project Lead: ニャンリンさん(Nyan Htet)、タンダーさん(Thandar)</li>
+    <li>Project Team: タンルインウーさん(Than Lwin Oo)、ネイトゥッさん(Nay Htut)</li>
+    <li>Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)</li>
 </ul>
