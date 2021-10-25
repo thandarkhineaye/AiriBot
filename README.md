@@ -1,6 +1,6 @@
 <h1>AIRIBOT</h1>
 <p align="center">
-  <img src="/images/company_logo.png" width="350" title="Airitech">
+  <img src="images/logo/company_logo.png" width="350" title="Airitech">
 </p>
 <h3>Executive Summary:</h3>
 <p>チャットボットに聞いた質問からテキストを分析し、それに関する商品やサービスをおすすめする。自然言語処理を使用してテキストの類似性、感情分析で商品検索し、レコメンデーションシステムを構築する。</p>
