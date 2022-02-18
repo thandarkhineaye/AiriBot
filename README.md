@@ -46,3 +46,7 @@ All members will also get new experiences while carrying out the actual project 
     <li>Project Team: タンルインウーさん(Than Lwin Oo)、ネイトゥッさん(Nay Htut)</li>
     <li>Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)</li>
 </ul>
+<ul>
+  <li>Project Reference</li>
+    <li>https://github.com/tatiblockchain/python-deep-learning-chatbot</li>
+</ul>
