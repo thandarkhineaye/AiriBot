@@ -30,7 +30,7 @@ All members will also get new experiences while carrying out the actual project 
     <li>社内プロジェクトとして実施、メンバーたちも新実際経験を貰えるためです。<br>
         Firstly, we will implemented as an in-house project and also the members can get new actual experiences from this.</li>
 </ul>
-<h3>リスク</h3>
+<h3>リスク (Risks)</h3>
 <ul>
     <li>参加者メンバーの開発時間が取れない、開発できない可能もあり <br>
         Participant members may not have time to develop or may not be able to develop</li>
@@ -39,14 +39,14 @@ All members will also get new experiences while carrying out the actual project 
     <li>環境構築準備に時間がかかる場合もあり <br>
         It may take time to prepare for development environment preparation.</li>
 </ul>
-<h3>プロジェクトチーム</h3>
+<h3>プロジェクトチーム (Team Member)</h3>
 <ul>
   <li>Project Sponsor: Airitech</li>
     <li>Project Lead: ニャンリンさん(Nyan Htet)、タンダーさん(Thandar)</li>
     <li>Project Team: タンルインウーさん(Than Lwin Oo)、ネイトゥッさん(Nay Htut)</li>
     <li>Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)</li>
 </ul>
+<h3>Project Reference</h3>
 <ul>
-  <li>Project Reference</li>
     <li>https://github.com/tatiblockchain/python-deep-learning-chatbot</li>
 </ul>
