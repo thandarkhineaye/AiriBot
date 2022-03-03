@@ -1,12 +1,11 @@
 {
   "intents": [
     {"tag": "greeting",
-     "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day", "Hey", "Ekse", "Hi"],
-     "responses": ["Hi stranger", "Yebo yes, how can I help", "Ey watsupp", "Ekse Hoezit", "Hola", "Hey dude", "You again"]
-    },
-    {"tag": "goodbye",
-     "patterns": ["Bye", "See you later", "Goodbye", "Ok bye", "Bye Bye"],
-     "responses": ["See you!", "Have a nice day", "Sure Bye", "Later dude", "Sayoonara", "Peace out", "Sure dude", "Ciao"]
+     "patterns": ["celonis installation", "celonis maintainence", "utilize support service", "TaskRecorder", "TaskRecorder agent", 
+      "TaskRecorder support", "Reportserver", "dataDiver installation", "dataDiver maintainence", "data ferry", "process mining", "business efficiency", "data vehicle"],
+      "responses": ["That will be from DX4 Department, Airitech!", 
+        "Please contact to DX4 Department from Airitech", 
+        "Please check out DX4 service, https://www.airitech.co.jp/service/process-mining/"]
     }
   ]
 }

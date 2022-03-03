@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {"tag": "greeting",
+     "patterns": ["Fianance", "When will I get paid?", "About Office", "What is our office address?", "What are the 2021 office holidays?", 
+      "Department", "How many departments are there in Airitech?", 
+      "Human Resource", "How many people are there in Airitech?", "Jobcan password", "How can I reset Jobcan’s password?", 
+      "How can I get a display?", "How do I change my personal data?", "How do I find out if I am eligible for Medical leave?", 
+      "How many sick and vacation hours do I earn each year?", "Who do I contact if I have questions about my insurance or retirement plans?", 
+      "Who is the HR consultant for my department?", "Do you have an HR department contact list?", "Where can I find new hiring information?", 
+      "Which department is responsible for employee documents?", "What documents do I need to apply for a job?", 
+      "When can I apply for the job?", "Which positions could I apply for currently?", "May I know the basic salary of the company for a new applicant?", 
+      "Could I know the company working hours per month?", "May I know bonuses and overtime pay calculations of the company?", 
+      "Which technologies are currently used in the company?", "What is the company address?", "How many branches are there in Japan or other countries?", 
+      "Where can I find new hiring information?", "TaskRecorder", "Which websites could not be accessed because of the firewall?", []],
+     "responses": ["Please contact HR Department of Airitech directly", "Please checkout our Contact Page: https://www.airitech.co.jp/contact/"]
+    }
+    
+  ]
+}

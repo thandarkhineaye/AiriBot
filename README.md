@@ -42,7 +42,7 @@ All members will also get new experiences while carrying out the actual project 
 <h3>プロジェクトチーム (Team Member)</h3>
 <ul>
   <li>Project Sponsor: Airitech</li>
-    <li>Project Lead: ニャンリンさん(Nyan Htet)、タンダーさん(Thandar)</li>
+    <li>Project Lead: ニャンリンさん(Nyan Linn)、タンダーさん(Thandar)</li>
     <li>Project Team: タンルインウーさん(Than Lwin Oo)、ネイトゥッさん(Nay Htut)</li>
     <li>Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)</li>
 </ul>

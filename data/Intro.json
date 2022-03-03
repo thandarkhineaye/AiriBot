@@ -1,0 +1,16 @@
+{
+  "intents": [
+      {"tag": "Airitech",
+        "patterns": ["What is Airitech","about Airitech", "Tell me about Airitech", "Who is Airitech", "Airitech Tokyo", "Tell me about Airitech", "Airitech is"],
+        "responses": ["The best environment produces the best performance and the result is to please our customers. Following this policy, Airitech Co., Ltd. will continue to grow.",
+        "Airitech located in Tokyo, Japan. Mainly service for troubleshooting, Data Science, AI and Big Data.", 
+        "Airitech is Troubleshooting and Data Science Company."]
+      },
+      {"tag": "Myanmar",
+        "patterns": ["What is Airitech Myanamr", "Airitech Myanmar", "about Airitech Myanmar", "Who is Airitech Myanmar", "Airitech Yangon", "Tell me about Airitech Yangon", "Airitech Myanmar is"],
+        "responses": ["Airitech Myanmar which established from 2021 and mainly service for Web Development.",
+          "Airitech Myanmar located in Yangon, Myanmar. Mainly service for troubleshooting, Web Development and Big Data.",
+          "Airitech Myanmar is Troubleshooting and Web Developing Company."]
+      }
+  ]
+}

@@ -1,12 +1,14 @@
 {
   "intents": [
-    {"tag": "greeting",
-     "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day", "Hey", "Ekse", "Hi"],
-     "responses": ["Hi stranger", "Yebo yes, how can I help", "Ey watsupp", "Ekse Hoezit", "Hola", "Hey dude", "You again"]
-    },
-    {"tag": "goodbye",
-     "patterns": ["Bye", "See you later", "Goodbye", "Ok bye", "Bye Bye"],
-     "responses": ["See you!", "Have a nice day", "Sure Bye", "Later dude", "Sayoonara", "Peace out", "Sure dude", "Ciao"]
+    {"tag": "Trouble Shooting",
+     "patterns":  ["trouble shooting","radical speed",  "speed",  "radical",  "Instana Support",  
+      "Jmeter",  "gataling",  "elastic apm",  "performance",  "Performance verification",  
+      "Performance visualization",  "Performance analysis ",  "environment construction service",  "highly accurate load scenario"],
+     "responses": ["That will be from DX1 Department, Airitech!", 
+      "Please contact to DX1 Department from Airitech", 
+      "Please check out DX1 service, https://www.airitech.co.jp/service/monitoring/"]
     }
   ]
 }
+
+
