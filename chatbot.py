@@ -6,13 +6,15 @@ import numpy as np
 from tensorflow import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
-from keras.optimizers import SGD
+#from keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD
 import random
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
 
+nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
