@@ -57,7 +57,7 @@
                   question: $("#question").val()
               },
               success: function(result) {
-                $("#response").append("<br>Me: "+$("#question").val()+ "<br> Airibot: "+result.response);
+                $("#response").append("<br>Me: "+$("#question").val()+ "<br><b><i> Airibot: "+result.response);
                 $("#question").val("")
               },
               error: function(result) {
