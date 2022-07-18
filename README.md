@@ -4,19 +4,19 @@
 ・チャットボットに聞いた質問からテキストを分析し、それに関する商品やサービスをおすすめする。自然言語処理を使用してテキストの類似性、感情分析で商品検索し、レコメンデーションシステムを構築する。
 \
 ・When ask the chatbot, analyze the text from the questions from end-users and recommend products and services related to it from Airitech. Use natural language processing and sentiment analysis to search for products by text similarity, build a recommendation system.
-\
+
 
 ## プロジェクト目標 : Project Goal
 ・レコメンデーションシステムの勉強、チャットボットを元にしてQ/A開発を実施できるように頑張る。\
 メンバーも実際のプロジェクトを実施ながら新しい経験を貰い、６ヶ月でデモ成果物（AiriBot）とそれに対して記事作成できるまで頑張る。\
 ・Create Q/A development system which based on recommendation systems and chatbots.\
-All members will also get new experiences while carrying out the actual project and will do their best until they can create a demo product (AiriBot) and an article for it in 6 months.\
+All members will also get new experiences while carrying out the actual project and will do their best until they can create a demo product (AiriBot) and an article for it in 6 months.
 
 ## 成果物 : Process
 ● フレームワーク検討し、テストデータ準備、チャットボット環境準備(Review framework, Prepare Data and environment）\
 ● メンバー募集と開発環境準備(Recruiting other members and preparing the development environment)\
 ● 各メンバーのタスクを分担(Sharing Tasks)\
-● タスク登録と進捗管理(Define Task and Progress Management)\
+● タスク登録と進捗管理(Define Task and Progress Management)
 
 ## ビジネスケース / 背景 : Business & background
 
@@ -27,20 +27,20 @@ All members will also get new experiences while carrying out the actual project 
 ● 勉強会で皆の力を纏めて、今回の活動でQ/A研究みたいな製品をチャレンジして見たいと思いました。\
         At Our Study session, we wanted to put together everyone's strengths and take on the challenge of creating products such as Q/A research.\
 ● 社内プロジェクトとして実施、メンバーたちも新実際経験を貰えるためです。\
-        Firstly, we will implemented as an in-house project and also the members can get new actual experiences from this.\
+        Firstly, we will implemented as an in-house project and also the members can get new actual experiences from this.
 
-## リスク (Risks)\
+## リスク (Risks)
 ● 参加者メンバーの開発時間が取れない、開発できない可能もあり\ 
         Participant members may not have time to develop or may not be able to develop\
 ● 開発で時間がかかる場合プロジェクト締め切りに間に合わない可能もあり\
         If development takes time or getting some problems, it may not be possible to finish in project deadline\
 ● 環境構築準備に時間がかかる場合もあり\
-        It may take time to prepare for development environment preparation.\
+        It may take time to prepare for development environment preparation.
 ## プロジェクトチーム (Team Member)
 ● Project Sponsor: Airitech\
 ● Project Lead: ニャンリンさん(Nyan Linn)、タンダーさん(Thandar)\
 ● Project Team: タンルインウーさん(Than Lwin Oo)、ネイトゥッさん(Nay Htut), カインカインジョー(Khine Khine Kyaw)\
-● Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)\
+● Additional Stakeholders:　落合さん(Mr.Ochiai)、カイザーさん(Khine Zar)
 
 ## Project Reference
 ● >https://github.com/tatiblockchain/python-deep-learning-chatbot
