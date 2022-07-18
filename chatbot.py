@@ -13,7 +13,7 @@ from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import LogisticRegression
-
+import matplotlib.pyplot as plt
 nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
@@ -89,11 +89,13 @@ print("Training data created")
 # third output layer contains number of neurons
 # equal to number of intents to predict output intent with softmax
 model = Sequential()
-model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))   # First
+model.add(Dense(256, input_shape=(len(train_x[0]),), activation='relu'))   # First
 model.add(Dropout(0.5))
-model.add(Dense(64, activation='relu'))                                    # Second
+model.add(Dense(128, activation='relu'))                                   # Second
 model.add(Dropout(0.5))
-model.add(Dense(len(train_y[0]), activation='softmax'))                    # Third
+model.add(Dense(64, activation='relu'))                                    # Third
+model.add(Dropout(0.5))
+model.add(Dense(len(train_y[0]), activation='softmax'))                # Last
 
 # Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
@@ -103,5 +105,12 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
 model.save('chatbot_model.h5', hist)
 
-print("model created")
+fig, ax2 = plt.subplots(1, figsize=(15, 5))
+ax2.plot(hist.history['loss'])
+ax2.plot(hist.history['accuracy'])
+ax2.legend(["train", "test"], loc="upper right")
+ax2.set_xlabel("Loss")
+ax2.set_ylabel("Accuracy")
+plt.show()
 
+print("model created")
