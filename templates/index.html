@@ -37,7 +37,7 @@
 
     </div>
 
-    <script src="/static/jquery.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
@@ -57,7 +57,7 @@
                   question: $("#question").val()
               },
               success: function(result) {
-                $("#response").append("<br>Me: "+$("#question").val()+ "<br> Airibot: "+result.response);
+                $("#response").append("<br>Me: "+$("#question").val()+ "<br><b><i> Airibot: "+result.response);
                 $("#question").val("")
               },
               error: function(result) {
