@@ -5,6 +5,14 @@ import numpy as np
 from keras.models import load_model
 import json
 import random
+import logging
+import constant
+
+# logging.basicConfig(filename=constant.LOG_FILE_PATH,
+#                      format='%(asctime)s %(levelname)-8s %(message)s',
+#                      level=logging.DEBUG,
+#                      datefmt='%Y-%m-%d %H:%M:%S')
+# logging.getLogger('matplotlib.font_manager').disabled = True
 
 lemmatizer = WordNetLemmatizer()
 model = load_model('chatbot_model.h5')
@@ -58,6 +66,8 @@ def getResponse(ints, intents_json):
     return result
 
 def chatbot_response(msg):
+    #logging.info("[processor.py] predict_class >>>>>")
     ints = predict_class(msg, model)
+    #logging.info("[processor.py] getResponse >>>>>")
     res = getResponse(ints, intents)
     return res
