@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import processor
+import processor_jp
 import logging
 import constant
 # Log File configuration
@@ -19,17 +20,17 @@ def index():
     return render_template('index.html', **locals())
 
 
-
-@app.route('/chatbot', methods=["GET", "POST"])
+@app.route('/chatbot', methods=["POST"])
 def chatbotResponse():
-
-    if request.method == 'POST':
-        the_question = request.form['question']
-        #logging.info("[app.py] get chatbot response >>>>>")
+    the_question = request.form['question']
+    language = request.form["language"]
+    #logging.info("[app.py] get chatbot response >>>>>")
+    if language.lower() == 'jp':
+        response = processor_jp.chat(the_question)
+    else:
         response = processor.chatbot_response(the_question)
 
-    return jsonify({"response": response })
-
+    return jsonify({"response": response})
 
 
 if __name__ == '__main__':

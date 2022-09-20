@@ -1,12 +1,18 @@
-import nltk
-from nltk.stem import WordNetLemmatizer
+import json
+import os
 import pickle
+import random
+
+import nltk
 import numpy as np
 from keras.models import load_model
-import json
-import random
-import logging
-import constant
+from nltk.stem import WordNetLemmatizer
+
+MODEL_PATH = 'data/models/en'
+INTENTS_PATH = 'data/intents/en'
+MODEL_SAVE_PATH = os.path.join(MODEL_PATH, 'chatbot_model.h5')
+WORDS_SAVE_PATH = os.path.join(MODEL_PATH, 'words.pkl')
+CLASSES_SAVE_PATH = os.path.join(MODEL_PATH, 'classes.pkl')
 
 # logging.basicConfig(filename=constant.LOG_FILE_PATH,
 #                      format='%(asctime)s %(levelname)-8s %(message)s',
@@ -15,10 +21,10 @@ import constant
 # logging.getLogger('matplotlib.font_manager').disabled = True
 
 lemmatizer = WordNetLemmatizer()
-model = load_model('chatbot_model.h5')
-intents = json.loads(open('data/Common.json', encoding='utf-8').read())
-words = pickle.load(open('words.pkl','rb'))
-classes = pickle.load(open('classes.pkl','rb'))
+model = load_model(MODEL_SAVE_PATH)
+intents = json.loads(open(os.path.join(INTENTS_PATH, 'Common.json'), encoding='utf-8').read())
+words = pickle.load(open(WORDS_SAVE_PATH,'rb'))
+classes = pickle.load(open(CLASSES_SAVE_PATH,'rb'))
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)

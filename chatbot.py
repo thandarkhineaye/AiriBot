@@ -16,6 +16,13 @@ from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
 import logging
 import constant
+import os
+
+MODEL_PATH = 'data/models/en'
+INTENTS_PATH = 'data/intents/en'
+MODEL_SAVE_PATH = os.path.join(MODEL_PATH, 'chatbot_model.h5')
+WORDS_SAVE_PATH = os.path.join(MODEL_PATH, 'words.pkl')
+CLASSES_SAVE_PATH = os.path.join(MODEL_PATH, 'classes.pkl')
 
 # Log File configuration
 logging.basicConfig(filename=constant.LOG_FILE_PATH,
@@ -38,7 +45,7 @@ ignore_words = ['?', '!']
 
 logging.info("Json Data file Open and Load >>>>>")
 # Json Data file Open and Load
-data_file = open('data/Common.json', encoding='utf-8').read()
+data_file = open(os.path.join(INTENTS_PATH, 'Common.json'), encoding='utf-8').read()
 intents = json.loads(data_file)
 
 logging.info("Data Tokenization and Preparation >>>>>")
@@ -67,8 +74,8 @@ print (len(documents), "documents")
 print (len(classes), "classes", classes)
 print (len(words), "unique lemmatized words", words)
 
-pickle.dump(words,open('words.pkl','wb'))
-pickle.dump(classes,open('classes.pkl','wb'))
+pickle.dump(words,open(WORDS_SAVE_PATH,'wb'))
+pickle.dump(classes,open(CLASSES_SAVE_PATH,'wb'))
 
 logging.info("initializing training data >>>>>")
 # initializing training data
@@ -123,7 +130,7 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 logging.info("fitting and saving the model >>>>>")
 #fitting and saving the model
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-model.save('chatbot_model.h5', hist)
+model.save(MODEL_SAVE_PATH, hist)
 
 fig, ax2 = plt.subplots(1, figsize=(15, 5))
 ax2.plot(hist.history['loss'])
