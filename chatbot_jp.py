@@ -19,7 +19,7 @@ WORDS_SAVE_PATH = os.path.join(MODEL_PATH, 'words.pkl')
 CLASSES_SAVE_PATH = os.path.join(MODEL_PATH, 'classes.pkl')
 
 # 意図ファイルを読み込む
-with open(os.path.join(INTENTS_PATH, 'intents.json'), "r", encoding="utf-8") as file:
+with open(os.path.join(INTENTS_PATH, 'Common.json'), "r", encoding="utf-8") as file:
     data = json.load(file)
 print(data)
 print(type(data))
