@@ -1,35 +1,28 @@
-import json
-import os
-import pickle
+import logging
 import random
 
 import matplotlib.pyplot as plt
 import numpy as np
-from janome.analyzer import Analyzer
-from janome.tokenfilter import POSStopFilter
-from janome.tokenizer import Tokenizer
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import SGD
 
-MODEL_PATH = 'data/models/jp'
-INTENTS_PATH = 'data/intents/jp'
-MODEL_SAVE_PATH = os.path.join(MODEL_PATH, 'chatbot_model.h5')
-WORDS_SAVE_PATH = os.path.join(MODEL_PATH, 'words.pkl')
-CLASSES_SAVE_PATH = os.path.join(MODEL_PATH, 'classes.pkl')
+from common.file_helper import FileHelper
+from common.logger import set_log_conf
+from common.sentence_preprocessor import SentencePreProcessor
+
+LANGUAGE = "jp"
+
+# Log File configuration
+set_log_conf()
+
+file_helper = FileHelper()
+sentence_preprocessor = SentencePreProcessor(LANGUAGE)
 
 # 意図ファイルを読み込む
-with open(os.path.join(INTENTS_PATH, 'Common.json'), "r", encoding="utf-8") as file:
-    data = json.load(file)
-print(data)
-print(type(data))
-
-# 形態素解析のためのインスタンスの生成
-tokenizer = Tokenizer()
-# 読み捨てるトークンの品詞を指定する
-# token_filters = [POSStopFilter(['記号','助詞','助動詞','動詞'])]
-token_filters = [POSStopFilter(['記号','助詞','助動詞'])]
-anal = Analyzer(tokenizer=tokenizer, token_filters=token_filters)
+logging.info("Json Data file Open and Load")
+data = file_helper.load_intents(LANGUAGE)
+logging.info(f"intents {data}")
 
 
 # 辞書データからある階層の内容を取り出す
@@ -62,57 +55,17 @@ def nested_item_value(parrent_object, nest_list):
 kw_list = nested_item_value(data,['intents',3,'responses'])
 print(kw_list)
 
-
-# 対象テキスト文字列を基本形の分かち書きに変換する
-def str_wakati(w):
-    wakati=''
-    tokens = anal.analyze(w)
-    wakati = ' '.join([t.base_form for t in tokens])
-    return wakati
-
-
-# 対象テキスト文字列を基本形の分かち書きリストに変換する
-def str_wakati_list(w):
-    wakati=[]
-    tokens = anal.analyze(w)
-    wakati.append([t.base_form for t in tokens])
-    return wakati[0]
-
-
-print(str_wakati_list(kw_list[1]))
-
-# 作業用リスト
-words = []
-classes = []
-documents = []
-
-for intent in data['intents']:
-    # 各々の教師文(pattern)について繰り返す
-    for pattern in intent['patterns']:
-        # 教師文を分かち書きリストにする
-        w = str_wakati_list(pattern)
-        # 分かち書きにした教師文のリスト
-        words.extend(w)
-        # リスト化した教師文とラベルの対
-        documents.append((w, intent['tag']))
-        # 教師文に存在する意図ラベルの目録リスト
-        if intent['tag'] not in classes:
-            classes.append(intent['tag'])
-
-print(words)
-print(documents)
-print(classes)
-
-words = sorted(list(set(words)))
-classes = sorted(list(set(classes)))
-
-print(words)
-print(classes)
+# Data Tokenization and Preparation
+tokenized_data = sentence_preprocessor.tokenize_data(data)
+words = tokenized_data["words"]
+classes = tokenized_data["classes"]
+documents = tokenized_data["documents"]
 
 # 目録をpickleファイルに保存する
-pickle.dump(words, open(WORDS_SAVE_PATH, 'wb'))
-pickle.dump(classes, open(CLASSES_SAVE_PATH, 'wb'))
+file_helper.dump_words_file(words, LANGUAGE)
+file_helper.dump_classes_file(classes, LANGUAGE)
 
+logging.info("initializing training data")
 training = []
 output_empty = [0] * len(classes)
 for doc in documents:
@@ -132,10 +85,13 @@ for doc in documents:
 random.shuffle(training)
 training = np.array(training)
 
+logging.info("create train and test lists")
 # 訓練用配列に格納する
 train_x = list(training[:,0])
 train_y = list(training[:,1])
+logging.info("Training data created")
 
+logging.info("Create model - 3 layers")
 # Create model - 3 layers.
 # First layer 128 neurons,
 # second layer 64 neurons,
@@ -150,11 +106,13 @@ model.add(Dense(64, activation='relu'))                                    # Thi
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))                # Last
 
+logging.info("Compile model - 3 layers")
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
+logging.info("fitting and saving the model")
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=120, batch_size=5, verbose=1)
-model.save(MODEL_SAVE_PATH, hist)
+file_helper.save_model(model, hist, LANGUAGE)
 
 fig, ax2 = plt.subplots(1, figsize=(15, 5))
 ax2.plot(hist.history['loss'])
@@ -164,3 +122,4 @@ ax2.set_xlabel("Loss")
 ax2.set_ylabel("Accuracy")
 plt.show()
 
+logging.info("Model Created")

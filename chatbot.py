@@ -1,81 +1,44 @@
-import nltk
-from nltk.stem import WordNetLemmatizer
-import json
-import pickle
-import numpy as np
-from tensorflow import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout
-#from keras.optimizers import SGD
-from tensorflow.keras.optimizers import SGD
-import random
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression
-import matplotlib.pyplot as plt
 import logging
-import constant
-import os
+import random
 
-MODEL_PATH = 'data/models/en'
-INTENTS_PATH = 'data/intents/en'
-MODEL_SAVE_PATH = os.path.join(MODEL_PATH, 'chatbot_model.h5')
-WORDS_SAVE_PATH = os.path.join(MODEL_PATH, 'words.pkl')
-CLASSES_SAVE_PATH = os.path.join(MODEL_PATH, 'classes.pkl')
+import matplotlib.pyplot as plt
+import nltk
+import numpy as np
+from keras.layers import Dense, Dropout
+from keras.models import Sequential
+from nltk.stem import WordNetLemmatizer
+# from keras.optimizers import SGD
+from tensorflow.keras.optimizers import SGD
+
+from common.file_helper import FileHelper
+from common.logger import set_log_conf
+from common.sentence_preprocessor import SentencePreProcessor
 
 # Log File configuration
-logging.basicConfig(filename=constant.LOG_FILE_PATH,
-                     format='%(asctime)s %(levelname)-8s %(message)s',
-                     level=logging.DEBUG,
-                     datefmt='%Y-%m-%d %H:%M:%S')
-logging.getLogger('matplotlib.font_manager').disabled = True
+set_log_conf()
+
+file_helper = FileHelper()
+sentence_preprocessor = SentencePreProcessor()
 
 nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('wordnet')
 lemmatizer = WordNetLemmatizer()
 
-logging.info("Initial Declaration >>>>> ")
-# Initial Declaration
-words=[]                    
-classes = []
-documents = []
-ignore_words = ['?', '!']
-
 logging.info("Json Data file Open and Load >>>>>")
 # Json Data file Open and Load
-data_file = open(os.path.join(INTENTS_PATH, 'Common.json'), encoding='utf-8').read()
-intents = json.loads(data_file)
+intents = file_helper.load_intents()
+logging.info(f"intents {intents}")
 
-logging.info("Data Tokenization and Preparation >>>>>")
 # Data Tokenization and Preparation
-for intent in intents['intents']:
-    for pattern in intent['patterns']:
+logging.info(f"Lemmatize word using WordNet's built-in morphy function")
+tokenized_data = sentence_preprocessor.tokenize_data(intents)
+words = tokenized_data["words"]
+classes = tokenized_data["classes"]
+documents = tokenized_data["documents"]
 
-        w = nltk.word_tokenize(pattern)
-        words.extend(w)
-
-        documents.append((w, intent['tag']))
-
-        if intent['tag'] not in classes:
-            classes.append(intent['tag'])
-
-logging.info("Lemmatize word using WordNet's built-in morphy function >>>>>")
-# Lemmatize word using WordNet's built-in morphy function. Returns the input word unchanged if it cannot be found in WordNet- Ignore words.
-words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words]
-
-logging.info("Sorting words and classes array >>>>>")
-# Sorting words and classes array
-words = sorted(list(set(words)))
-classes = sorted(list(set(classes)))
-
-print (len(documents), "documents")
-print (len(classes), "classes", classes)
-print (len(words), "unique lemmatized words", words)
-
-pickle.dump(words,open(WORDS_SAVE_PATH,'wb'))
-pickle.dump(classes,open(CLASSES_SAVE_PATH,'wb'))
+file_helper.dump_words_file(words)
+file_helper.dump_classes_file(classes)
 
 logging.info("initializing training data >>>>>")
 # initializing training data
@@ -104,7 +67,7 @@ logging.info("create train and test lists  >>>>>")
 # X - patterns, Y - intents
 train_x = list(training[:,0])
 train_y = list(training[:,1])
-print("Training data created")
+logging.info("Training data created")
 
 
 logging.info("Create model - 3 layers >>>>>")
@@ -130,7 +93,7 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 logging.info("fitting and saving the model >>>>>")
 #fitting and saving the model
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-model.save(MODEL_SAVE_PATH, hist)
+file_helper.save_model(model, hist)
 
 fig, ax2 = plt.subplots(1, figsize=(15, 5))
 ax2.plot(hist.history['loss'])
@@ -141,4 +104,3 @@ ax2.set_ylabel("Accuracy")
 plt.show()
 
 logging.info("Model Created >>>>>")
-print("model created")

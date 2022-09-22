@@ -1,13 +1,12 @@
+import logging
+
 from flask import Flask, render_template, jsonify, request
 
+from common.logger import set_log_conf
 from processor import ChatProcessor
 
 # Log File configuration
-# logging.basicConfig(filename=constant.LOG_FILE_PATH,
-#                      format='%(asctime)s %(levelname)-8s %(message)s',
-#                      level=logging.DEBUG,
-#                      datefmt='%Y-%m-%d %H:%M:%S')
-# logging.getLogger('matplotlib.font_manager').disabled = True
+set_log_conf()
 
 LANGUAGE_EN = "en"
 LANGUAGE_JP = "jp"
@@ -25,15 +24,15 @@ def index():
 
 
 @app.route('/chatbot', methods=["POST"])
-def chatbotResponse():
+def chatbot_response():
     the_question = request.form["question"]
     language = request.form["language"]
-    #logging.info("[app.py] get chatbot response >>>>>")
+    logging.info(f"start get chatbot response. input: {the_question}, lang: {language}")
     if language.lower() == LANGUAGE_JP:
         response = chat_processor_jp.get_chatbot_response(the_question)
     else:
         response = chat_processor_en.get_chatbot_response(the_question)
-
+    logging.info(f"finish get chatbot response. input: {the_question}, lang: {language}, resp: {response}")
     return jsonify({"response": response})
 
 

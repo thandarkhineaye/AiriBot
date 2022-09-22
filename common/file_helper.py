@@ -1,7 +1,7 @@
 import json
 import os
 import pickle
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 
 from keras.models import load_model
 from tensorflow.python.keras.engine.sequential import Sequential
@@ -66,3 +66,43 @@ class FileHelper:
         if not os.path.isfile(file_path):
             return None
         return json.loads(open(file_path, encoding='utf-8').read())
+
+    def dump_pickle_file(self, data: Any, file_name: str, language: str = "en") -> None:
+        """
+        save pickle file
+        :param data:
+        :param file_name:
+        :param language:
+        :return:
+        """
+        file_path = os.path.join(self.MODEL_PATH, language.lower(), file_name)
+        pickle.dump(data, open(file_path, 'wb'))
+
+    def dump_words_file(self, data: List[str], language: str = "en") -> None:
+        """
+        教師データに出現した単語の目録リストを保存する。
+        :param data:
+        :param language:
+        :return:
+        """
+        return self.dump_pickle_file(data, self.WORDS_SAVE_FILE, language)
+
+    def dump_classes_file(self, data: List[str], language: str = "en") -> None:
+        """
+        教師データに出現した意図ラベルの目録リストを保存する。
+        :param data:
+        :param language:
+        :return:
+        """
+        return self.dump_pickle_file(data, self.CLASSES_SAVE_FILE, language)
+
+    def save_model(self, model: Sequential, data: Any, language: str = "en") -> None:
+        """
+        学習したモデルを保存する。
+        :param model:
+        :param data:
+        :param language:
+        :return:
+        """
+        file_path = os.path.join(self.MODEL_PATH, language.lower(), self.MODEL_SAVE_FILE)
+        return model.save(file_path, data)
