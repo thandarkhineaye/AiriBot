@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import pickle
 from typing import Optional, Dict, List, Any
@@ -15,7 +16,8 @@ class FileHelper:
         self.MODEL_SAVE_FILE = "chatbot_model.h5"
         self.WORDS_SAVE_FILE = "words.pkl"
         self.CLASSES_SAVE_FILE = "classes.pkl"
-        self.INTENTS_FILE = "Common.json"
+        self.INTENTS_FILE_EXTENSION = ".json"
+        self.INTENTS_FILE_ENCODING = "utf-8"
 
     def load_pickle_file(self, file_name: str, language: str = "en"):
         """
@@ -62,10 +64,32 @@ class FileHelper:
         :param language:
         :return:
         """
-        file_path = os.path.join(self.INTENTS_PATH, language, self.INTENTS_FILE)
-        if not os.path.isfile(file_path):
-            return None
-        return json.loads(open(file_path, encoding='utf-8').read())
+        intents = {"intents": []}
+        file_path = os.path.join(self.INTENTS_PATH, language)
+        files = self.list_files(file_path, self.INTENTS_FILE_EXTENSION)
+        for file in files:
+            sub_intents = json.loads(open(file, encoding=self.INTENTS_FILE_ENCODING).read())
+            if "intents" not in sub_intents:
+                logging.info(f"No intents in {file}")
+                continue
+            intents["intents"].extend(sub_intents["intents"])
+        return intents
+
+    @staticmethod
+    def list_files(file_path: str, target_file_extension: str = None) -> List[str]:
+        """
+        list of files inside directory
+        :param file_path:
+        :param target_file_extension:
+        :return:
+        """
+        result = []
+        for (root, dirs, files) in os.walk(file_path):
+            for file in files:
+                if target_file_extension and not file.lower().endswith(target_file_extension):
+                    continue
+                result.append(os.path.join(root, file))
+        return result
 
     def dump_pickle_file(self, data: Any, file_name: str, language: str = "en") -> None:
         """

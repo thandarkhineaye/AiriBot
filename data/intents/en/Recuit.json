@@ -1,6 +1,6 @@
 {
   "intents": [
-    {"tag": "greeting",
+    {"tag": "Human Resource",
      "patterns": ["Fianance", "When will I get paid?", "About Office", "What is our office address?", "What are the 2021 office holidays?", 
       "Department", "How many departments are there in Airitech?", 
       "Human Resource", "How many people are there in Airitech?", "Jobcan password", "How can I reset Jobcan’s password?", 
