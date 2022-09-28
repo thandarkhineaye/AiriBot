@@ -25,6 +25,12 @@
             <input class="form-control" type="text" name="question" id="question">
           </div>
           <div class="col-lg-2">
+            <select class="form-control" name="language" id="language">
+              <option value="en">English</option>
+              <option value="jp">日本語</option>
+            </select>
+          </div>
+          <div class="col-lg-2">
             <button class="btn btn-primary btn-block" id="submit-button">Send</button>
           </div>
         </div>
@@ -48,13 +54,12 @@
 
         $("#submit-button").click(function(e) {
           e.preventDefault();
-
-
           $.ajax({
               type: "POST",
               url: "/chatbot",
               data: {
-                  question: $("#question").val()
+                  question: $("#question").val(),
+                  language: $("#language").find(":selected").val()
               },
               success: function(result) {
                 $("#response").append("<br>Me: "+$("#question").val()+ "<br><b><i> Airibot: "+result.response);

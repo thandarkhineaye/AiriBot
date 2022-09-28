@@ -1,6 +1,6 @@
 {
   "intents": [
-    {"tag": "greeting",
+    {"tag": "Process Mining",
      "patterns": ["celonis installation", "celonis maintainence", "utilize support service", "TaskRecorder", "TaskRecorder agent", 
       "TaskRecorder support", "Reportserver", "dataDiver installation", "dataDiver maintainence", "data ferry", "process mining", "business efficiency", "data vehicle"],
       "responses": ["That will be from DX4 Department, Airitech!", 
