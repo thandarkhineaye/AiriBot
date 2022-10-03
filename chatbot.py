@@ -10,19 +10,19 @@ from nltk.stem import WordNetLemmatizer
 # from keras.optimizers import SGD
 from tensorflow.keras.optimizers import SGD
 
+from common.config import load_config
 from common.file_helper import FileHelper
 from common.logger import set_log_conf
 from common.sentence_preprocessor import SentencePreProcessor
 
 # Log File configuration
 set_log_conf()
+config = load_config()
 
-file_helper = FileHelper()
-sentence_preprocessor = SentencePreProcessor()
+file_helper = FileHelper(config)
+sentence_preprocessor = SentencePreProcessor(config)
 
-nltk.download('omw-1.4')
-nltk.download('punkt')
-nltk.download('wordnet')
+file_helper.download_nltk_targets()
 lemmatizer = WordNetLemmatizer()
 
 logging.info("Json Data file Open and Load >>>>>")
