@@ -1,0 +1,31 @@
+model:
+ models_path: "../data/models"
+ intents_path: "../data/intents"
+ model_file: "chatbot_model.h5"
+ words_file: "words.pkl"
+ classes_file: "classes.pkl"
+ intents_file:
+   file_extension: ".json"
+   file_encoding: "utf-8"
+ ignore_words:
+   - "?"
+   - "!"
+ error_threshold: 0.25
+ language:
+   english: "en"
+   japan: "jp"
+ invalid_question:
+   en: "You must ask the right questions"
+   jp: "うまくお答えできません"
+
+eng_model:
+  nltk_download_targets:
+    - "omw-1.4"
+    - "punkt"
+    - "wordnet"
+
+jp_model:
+  token_filters:
+    - "記号"
+    - "助詞"
+    - "助動詞"
