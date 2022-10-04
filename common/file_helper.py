@@ -1,16 +1,17 @@
 import json
 import logging
 import os
-import nltk
 import pickle
 from typing import Optional, Dict, List, Any
 
+import nltk
 from keras.models import load_model
+from omegaconf import DictConfig
 from tensorflow.python.keras.engine.sequential import Sequential
 
 
 class FileHelper:
-    def __init__(self, conf: dict):
+    def __init__(self, conf: DictConfig):
         self.MODEL_PATH = os.path.join(os.path.dirname(__file__), conf["model"]["models_path"])
         self.INTENTS_PATH = os.path.join(os.path.dirname(__file__), conf["model"]["intents_path"])
         self.MODEL_SAVE_FILE = conf["model"]["model_file"]

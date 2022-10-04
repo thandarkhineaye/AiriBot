@@ -1,3 +1,4 @@
+import logging
 from typing import List, Dict
 
 import nltk
@@ -5,11 +6,11 @@ from janome.analyzer import Analyzer
 from janome.tokenfilter import POSStopFilter
 from janome.tokenizer import Tokenizer
 from nltk.stem import WordNetLemmatizer
-import logging
+from omegaconf import DictConfig
 
 
 class SentencePreProcessor:
-    def __init__(self, conf: dict, language: str = "en"):
+    def __init__(self, conf: DictConfig, language: str = "en"):
         self.lemmatizer = WordNetLemmatizer()
         self.tokenizer = Tokenizer()
         # 読み捨てるトークンの品詞を指定する
