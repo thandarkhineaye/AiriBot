@@ -1,3 +1,4 @@
+import logging
 from typing import List, Dict
 
 import nltk
@@ -5,19 +6,19 @@ from janome.analyzer import Analyzer
 from janome.tokenfilter import POSStopFilter
 from janome.tokenizer import Tokenizer
 from nltk.stem import WordNetLemmatizer
-import logging
+from omegaconf import DictConfig
 
 
 class SentencePreProcessor:
-    def __init__(self, language: str = "en"):
+    def __init__(self, conf: DictConfig, language: str = "en"):
         self.lemmatizer = WordNetLemmatizer()
         self.tokenizer = Tokenizer()
         # 読み捨てるトークンの品詞を指定する
-        self.token_filters = [POSStopFilter(['記号', '助詞', '助動詞'])]
+        self.token_filters = [POSStopFilter(conf["jp_model"]["token_filters"])]
         self.analyzer = Analyzer(tokenizer=self.tokenizer, token_filters=self.token_filters)
         self.language = language
-        self.DEFAULT_LANGUAGE = "en"
-        self.IGNORE_WORDS = ['?', '!']
+        self.DEFAULT_LANGUAGE = conf["model"]["language"]["english"]
+        self.IGNORE_WORDS = conf["model"]["ignore_words"]
 
     def clean_up_sentence_en(self, sentence: str) -> List[str]:
         """

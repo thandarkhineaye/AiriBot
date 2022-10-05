@@ -4,14 +4,16 @@ from flask import Flask, render_template, jsonify, request
 
 from common.logger import set_log_conf
 from processor import ChatProcessor
+from common.config import load_config
 
 # Log File configuration
 set_log_conf()
+config = load_config()
 
-LANGUAGE_EN = "en"
-LANGUAGE_JP = "jp"
-chat_processor_en = ChatProcessor(LANGUAGE_EN)
-chat_processor_jp = ChatProcessor(LANGUAGE_JP)
+LANGUAGE_EN = config["model"]["language"]["english"]
+LANGUAGE_JP = config["model"]["language"]["japan"]
+chat_processor_en = ChatProcessor(config, LANGUAGE_EN)
+chat_processor_jp = ChatProcessor(config, LANGUAGE_JP)
 
 app = Flask(__name__)
 

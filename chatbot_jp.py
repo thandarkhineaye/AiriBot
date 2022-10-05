@@ -7,17 +7,20 @@ from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import SGD
 
+from common.config import load_config
 from common.file_helper import FileHelper
 from common.logger import set_log_conf
 from common.sentence_preprocessor import SentencePreProcessor
 
-LANGUAGE = "jp"
 
 # Log File configuration
 set_log_conf()
+config = load_config()
 
-file_helper = FileHelper()
-sentence_preprocessor = SentencePreProcessor(LANGUAGE)
+LANGUAGE = config["model"]["language"]["japan"]
+
+file_helper = FileHelper(config)
+sentence_preprocessor = SentencePreProcessor(config, LANGUAGE)
 
 # 意図ファイルを読み込む
 logging.info("Json Data file Open and Load")

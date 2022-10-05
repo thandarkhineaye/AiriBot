@@ -11,7 +11,7 @@
       "When can I apply for the job?", "Which positions could I apply for currently?", "May I know the basic salary of the company for a new applicant?", 
       "Could I know the company working hours per month?", "May I know bonuses and overtime pay calculations of the company?", 
       "Which technologies are currently used in the company?", "What is the company address?", "How many branches are there in Japan or other countries?", 
-      "Where can I find new hiring information?", "TaskRecorder", "Which websites could not be accessed because of the firewall?", []],
+      "Where can I find new hiring information?", "TaskRecorder", "Which websites could not be accessed because of the firewall?"],
      "responses": ["Please contact HR Department of Airitech directly", "Please checkout our Contact Page: https://www.airitech.co.jp/contact/"]
     }
     

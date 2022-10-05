@@ -32,12 +32,18 @@ pip install -r requirements.txt
 ```
 python chatbot.py
 ```
+
 5. Run the chatbot.py file to create English version model
+```
+python chatbot.py
+```
+
+6. Run the chatbot_jp.py file to create the japan model
 ```
 python chatbot_jp.py
 ```
 
-6. Run the APP to create a Flask front end on port 8888 (or any port the app is pointing to)
+Run the APP to create a Flask front end on port 8888 (or any port the app is pointing to)
 ```
 python app.py
 ```

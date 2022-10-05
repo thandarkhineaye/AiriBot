@@ -9,16 +9,16 @@ from common.sentence_preprocessor import SentencePreProcessor
 
 
 class ChatProcessor:
-    def __init__(self, language: str):
+    def __init__(self, conf: dict, language: str):
         self.language = language
-        self.file_helper = FileHelper()
+        self.file_helper = FileHelper(conf)
         self.model = self.file_helper.load_model(language)
         self.intents = self.file_helper.load_intents(language)
         self.words = self.file_helper.load_words_file(language)
         self.classes = self.file_helper.load_classes_file(language)
-        self.sentence_preprocessor = SentencePreProcessor(language)
-        self.ERROR_THRESHOLD = 0.25
-        self.INVALID_QUESTION = "You must ask the right questions" if self.language == "en" else "うまくお答えできません"
+        self.sentence_preprocessor = SentencePreProcessor(conf, language)
+        self.ERROR_THRESHOLD = conf["model"]["error_threshold"]
+        self.INVALID_QUESTION = conf["model"]["invalid_question"][self.language.lower()]
 
     def bow(self, sentence: str, show_details=True) -> List[int]:
         """

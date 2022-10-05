@@ -4,20 +4,22 @@ import os
 import pickle
 from typing import Optional, Dict, List, Any
 
+import nltk
 from keras.models import load_model
+from omegaconf import DictConfig
 from tensorflow.python.keras.engine.sequential import Sequential
 
 
 class FileHelper:
-    def __init__(self):
-        # TODO later constants should be replaced with config values
-        self.MODEL_PATH = os.path.join(os.path.dirname(__file__), '../data/models')
-        self.INTENTS_PATH = os.path.join(os.path.dirname(__file__), '../data/intents')
-        self.MODEL_SAVE_FILE = "chatbot_model.h5"
-        self.WORDS_SAVE_FILE = "words.pkl"
-        self.CLASSES_SAVE_FILE = "classes.pkl"
-        self.INTENTS_FILE_EXTENSION = ".json"
-        self.INTENTS_FILE_ENCODING = "utf-8"
+    def __init__(self, conf: DictConfig):
+        self.MODEL_PATH = os.path.join(os.path.dirname(__file__), conf["model"]["models_path"])
+        self.INTENTS_PATH = os.path.join(os.path.dirname(__file__), conf["model"]["intents_path"])
+        self.MODEL_SAVE_FILE = conf["model"]["model_file"]
+        self.WORDS_SAVE_FILE = conf["model"]["words_file"]
+        self.CLASSES_SAVE_FILE = conf["model"]["classes_file"]
+        self.INTENTS_FILE_EXTENSION = conf["model"]["intents_file"]["file_extension"]
+        self.INTENTS_FILE_ENCODING = conf["model"]["intents_file"]["file_encoding"]
+        self.NLTK_TARGETS = conf["eng_model"]["nltk_download_targets"]
 
     def load_pickle_file(self, file_name: str, language: str = "en"):
         """
@@ -130,3 +132,11 @@ class FileHelper:
         """
         file_path = os.path.join(self.MODEL_PATH, language.lower(), self.MODEL_SAVE_FILE)
         return model.save(file_path, data)
+
+    def download_nltk_targets(self) -> None:
+        """
+        download target nltk data
+        :return:
+        """
+        for target in self.NLTK_TARGETS:
+            nltk.download(target)
