@@ -26,22 +26,39 @@ set-executionpolicy remotesigned
 pip install -r requirements.txt
 ```
 
-3. Environment Setup
+3. Create models (both English version model and Japanese version model)
 
-4. Run the chatbot.py file to create English version model
+For Windows,
 ```
-python chatbot.py
-```
-
-5. Run the chatbot_jp.py file to create Japanese version model
-```
-python chatbot_jp.py
+cd bin
+./create_models_{ENV}.bat
 ```
 
-Run the APP to create a Flask front end on port 8888 (or any port the app is pointing to)
+For Linux,
 ```
-python app.py
+cd bin
+./create_models_{ENV}.sh
 ```
+※　If execution permission error occurred, run `chmod +x create_models_{ENV}.sh`.
+
+※　ENV is desired environment (develop/production/staging).
+
+4. Run the APP to create a Flask front end on port 8888 (or any port the app is pointing to)
+
+For Windows,
+```
+cd bin
+./app_{ENV}.bat
+```
+
+For Linux,
+```
+cd bin
+./app_{ENV}.sh
+```
+※　If execution permission error occurred, run `chmod +x app_{ENV}.sh`.
+
+※　ENV is desired environment (develop/production/staging).
 
 ## Project Reference
 ● >https://github.com/tatiblockchain/python-deep-learning-chatbot
