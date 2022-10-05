@@ -33,12 +33,7 @@ pip install -r requirements.txt
 python chatbot.py
 ```
 
-5. Run the chatbot.py file to create English version model
-```
-python chatbot.py
-```
-
-6. Run the chatbot_jp.py file to create the japan model
+5. Run the chatbot_jp.py file to create Japanese version model
 ```
 python chatbot_jp.py
 ```
