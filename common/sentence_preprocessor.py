@@ -65,7 +65,7 @@ class SentencePreProcessor:
             # 各々の教師文(pattern)について繰り返す
             for pattern in intent['patterns']:
                 # 教師文を分かち書きリストにする
-                result = self.clean_up_sentence(pattern)
+                result = self.clean_up_sentence(str(pattern))
                 # 分かち書きにした教師文のリスト
                 words.extend(result)
                 # リスト化した教師文とラベルの対

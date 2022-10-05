@@ -1,6 +1,6 @@
 import logging
 import random
-
+import tensorflow as tf
 import matplotlib.pyplot as plt
 import nltk
 import numpy as np
@@ -76,24 +76,37 @@ logging.info("Create model - 3 layers >>>>>")
 # second layer 64 neurons, 
 # third output layer contains number of neurons
 # equal to number of intents to predict output intent with softmax
-model = Sequential()
-model.add(Dense(256, input_shape=(len(train_x[0]),), activation='relu'))   # First
-model.add(Dropout(0.5))
-model.add(Dense(128, activation='relu'))                                   # Second
-model.add(Dropout(0.5))
-model.add(Dense(64, activation='relu'))                                    # Third
-model.add(Dropout(0.5))
-model.add(Dense(len(train_y[0]), activation='softmax'))                # Last
+
+# model = Sequential()
+# model.add(Dense(256, input_shape=(len(train_x[0]),), activation='relu'))   # First
+# model.add(Dropout(0.5))
+# model.add(Dense(128, activation='relu'))                                   # Second
+# model.add(Dropout(0.5))
+# model.add(Dense(64, activation='relu'))                                    # Third
+# model.add(Dropout(0.5))
+# model.add(Dense(len(train_y[0]), activation='softmax'))                # Last
+
+model_test = tf.keras.Sequential([
+  tf.keras.layers.Flatten(input_shape = (len(train_x[0]),)),
+  tf.keras.layers.Dense(256, activation = "relu"),
+  tf.keras.layers.Dense(128, activation = "relu"),
+  tf.keras.layers.Dense(64, activation = "relu"),
+  tf.keras.layers.Dense(len(train_y[0]), activation = "softmax")
+])
 
 logging.info("Compile model - 3 layers >>>>>")
 # Compile model. Stochastic gradient descent with Nesterov accelerated gradient gives good results for this model
 sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+
+#model_test.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+model_test.compile(loss = 'categorical_crossentropy',
+                optimizer = tf.keras.optimizers.Adam(),
+                metrics=["accuracy"])
 
 logging.info("fitting and saving the model >>>>>")
 #fitting and saving the model
-hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-file_helper.save_model(model, hist)
+hist = model_test.fit(np.array(train_x), np.array(train_y), epochs=17, batch_size=5, verbose=1)
+file_helper.save_model(model_test, hist)
 
 fig, ax2 = plt.subplots(1, figsize=(15, 5))
 ax2.plot(hist.history['loss'])
