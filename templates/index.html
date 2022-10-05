@@ -52,8 +52,21 @@
 
       jQuery(document).ready(function() {
 
+        $('input').keyup(function(event) {
+          if (event.which === 13)
+          {
+            event.preventDefault();
+            $("#submit-button").click();
+          }
+        });
+
         $("#submit-button").click(function(e) {
           e.preventDefault();
+          var question = $("#question").val();
+          if (question == "") {
+            alert("Please enter a question");
+            return;
+          }
           $.ajax({
               type: "POST",
               url: "/chatbot",
